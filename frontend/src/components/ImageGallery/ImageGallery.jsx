@@ -39,7 +39,7 @@ const ImageGallery = () => {
            
                 <div className="img-container">
                 {galleryImages.map((image, i) => (
-                        <img className={i%6 === 0 ? "span-3 image-grid-row-2" : ""}
+                        <img className={i%5 === 0 ? "span-3 image-grid-row-2" : ""}
                             key={i}
                             src={image}
                             style={{width: "100%", display: "block", borderRadius: "10px"}}
