@@ -14,7 +14,7 @@ const FeaturedTour = () => {
             
             {tourData?.map(tour=>(
             <Col lg="3" className='mb-4' key={tour.title}>
-                <TourCard tour={tour} />
+                <TourCard tour={tour} checkFeatured={true}/>
             </Col>
             ))}
     

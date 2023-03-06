@@ -3,8 +3,8 @@ import { Card, CardBody} from "reactstrap";
 import { Link} from "react-router-dom"; 
 import "./tours.css";
 
-const TourCard = ({ tour }) => {
-const { id, title, photo, price, city, featured, reviews} = tour;
+const TourCard = ({ tour, checkFeatured }) => {
+const { title, photo, price, city, reviews} = tour;
 const totalRating = reviews?.reduce((acc, item) => acc + item.rating, 0);
 const avgRating = totalRating === 0 ? "" : totalRating === 1 ? totalRating : totalRating / reviews?.length;
 
@@ -14,7 +14,8 @@ return (
         <Card>
             <div className="tour__img">
                 <img src={photo} alt="tour-img" />
-                <span>Featured</span>
+                {checkFeatured && <span>Featured</span>}
+                
             </div>
             <CardBody>
             <div className="card__top d-flex align-items-center justify-content-between">

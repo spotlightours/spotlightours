@@ -29,7 +29,7 @@ const AllTours = () => {
         <Row>
           {tourData?.map(tour=>(
             <Col lg="4" className='mb-4' key={tour.id}>
-                <TourCard tour={tour} />
+                <TourCard tour={tour} checkFeatured={false} />
             </Col>
             ))}
             <Col lg="12 ">
