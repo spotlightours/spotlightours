@@ -2,15 +2,19 @@ import React from 'react';
 import './blogDetails.css';
 import {Container, Row, Col} from 'reactstrap';
 import {useParams} from 'react-router-dom';
-import blogData from '../../components/BlogCard/blogData';
+
+import { BASE_URL } from '../../utils/config';
+import useFetch from '../../hooks/useFetch';
+
 
 const BlogDetails = () => {
-    const {title} = useParams ();
+    const {id} = useParams ();
 
     //this is an static data later we will call our API and load our data from database
-    const blog = blogData.find ( blog => blog.title === title);
+    const { data:blog } = useFetch(`${BASE_URL}/blogs/${id}}`);
+    console.log(blog);
     // destructure properties from tour object
-    const { photo, desc, pubDate} = blog;
+    const { title, photo, desc, pubDate} = blog;
 
     function replaceWithBr(descStr) {
         return descStr.replace(/\n/g, "<br />");

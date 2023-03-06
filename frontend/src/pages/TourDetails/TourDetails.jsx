@@ -6,15 +6,21 @@ import tourData from '../../components/FeaturedTour/tourData';
 import Booking from '../../components/Booking/Booking';
 import avatar from '../../assets/images/avatar.jpg';
 
+import useFetch from '../../hooks/useFetch';
+import { BASE_URL } from '../../utils/config';
+
 const TourDetails = () => {
-    const {title} = useParams ();
+    const {_id} = useParams ();
     const reviewMsgRef = useRef('');
     const [reviewRating, setReviewReting] = useState(null);
 
+
     //this is an static data later we will call our API and load our data from database
-    const tour = tourData.find ( tour => tour.title === title);
+    const { data: tour } = useFetch(`${BASE_URL}/tours/${_id}`);
+    console.log('arsalan', _id);
+    console.log('arsalan1', tour);
     // destructure properties from tour object
-    const { photo, desc, price, city, featured, maxGroupSize, reviews} = tour;
+    const { title, photo, desc, price, maxGroupSize, reviews} = tour;
     const totalRating = reviews?.reduce((acc, item) => acc + item.rating, 0);
     const avgRating = totalRating === 0 ? "" : totalRating === 1 ? totalRating : totalRating / reviews?.length;
 

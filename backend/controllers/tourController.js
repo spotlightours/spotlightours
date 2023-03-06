@@ -53,7 +53,7 @@ export const getAllTour = async (req, res) => {
     const page = parseInt(req.query.page);
 
     try {
-        const allTour = await Tour.find({}).populate('reviews').skip(page*8).limit(8);
+        const allTour = await Tour.find({}).populate('reviews').skip(page*9).limit(9);
         res.status(200).json({success: true, count: allTour.length, message: 'Tours found successfully', data: allTour});
     }
     catch (error) {

@@ -1,6 +1,6 @@
 import Blog from "../models/Blog.js";
 
-// create a new tour
+// create a new Blog
 
 export const createBlog = async (req, res) => {
     const newBlog = new Blog(req.body);
@@ -34,3 +34,14 @@ export const getAllBlog = async (req, res) => {
         res.status(404).json({success: false, message: 'internal server error'});
     }
 };
+
+//getBlog count
+export const getBlogCount = async (req, res) => {
+    try {
+        const count = await Blog.countDocuments({});
+        res.status(200).json({success: true, message: 'Blogs count found successfully', data: count});
+    }
+    catch (error) {
+        res.status(404).json({success: false, message: 'not found'});
+    }
+}
