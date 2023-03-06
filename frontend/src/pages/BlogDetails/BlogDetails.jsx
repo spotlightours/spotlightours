@@ -12,6 +12,11 @@ const BlogDetails = () => {
     // destructure properties from tour object
     const { photo, desc, pubDate} = blog;
 
+    function replaceWithBr(descStr) {
+        return descStr.replace(/\n/g, "<br />");
+      }
+    
+
   return (
     <>
         <section>
@@ -23,7 +28,7 @@ const BlogDetails = () => {
                             <h6><em>Published on {pubDate}</em></h6>
                             <img src={photo} alt=""/>
                             <div className = "blog__info">
-                                <p>{desc}</p>
+                                 <p dangerouslySetInnerHTML={{ __html: replaceWithBr(desc) }} />
                             </div>
 
                         </div>
