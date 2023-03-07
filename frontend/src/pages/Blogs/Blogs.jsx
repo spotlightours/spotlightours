@@ -14,8 +14,6 @@ const Blogs = () => {
 
   const { data: blogs, loading, error } = useFetch(`${BASE_URL}/blogs?page=${page}`);
   const { data: blogCount} = useFetch(`${BASE_URL}/blogs/search/getBlogCount`);
-
-  console.log(blogs);
   
   useEffect(() => {
   const pages = Math.ceil(blogCount / 8); //later we will use backend data count

@@ -1,8 +1,11 @@
-import React ,{useRef, useEffect}from "react";
+import React ,{useRef, useEffect, useContext}from "react";
 import {Container, Row, Button} from 'reactstrap'; 
-import {NavLink, Link} from 'react-router-dom';
+import {NavLink, Link, useNavigate} from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import './navbar.css';
+
+import { AuthContext } from '.././../context/AuthContext';
+
 const nav__links=[
 {
 path: '/',
@@ -20,6 +23,14 @@ display: 'Blogs'
 
 const Navbar = () => {
   const menuRef = useRef(null);
+  const { user, dispatch } = useContext(AuthContext); 
+  const Navigate = useNavigate();
+
+  const logout = () => {
+    dispatch({type: 'LOGOUT'});
+    Navigate('/');
+  }
+
   const toggleMenu = () => { menuRef.current.classList.toggle('show__menu')}
   return (
     <header className="header sticky_header">
@@ -44,8 +55,17 @@ const Navbar = () => {
 
       <div className= "nav__right d-flex align-items-center gap-4 login__btn" >
           <div className= "nav__btns d-flex align-items-center gap-3">
-            <Button className="btn secondary_btn "><Link to='/login'>Login</Link> </Button>
-            <Button className="btn primary_btn"><Link to='/register'>Register</Link></Button>
+            {user ? <>
+              <h5 className="mb-0">{user.username}</h5>
+              <Button className="btn btn-dark" onClick={logout}>Logout</Button>
+              </>
+              :
+              <>
+                <Button className="btn secondary_btn "><Link to='/login'>Login</Link> </Button>
+                <Button className="btn primary_btn"><Link to='/register'>Register</Link></Button>
+              </>
+            }
+           
           </div>
           <span className="mobile__menu" onClick={toggleMenu}>
           <i className="ri-menu-line"></i>

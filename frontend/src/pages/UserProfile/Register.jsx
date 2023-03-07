@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import './login.css'
 import {Container, Row, Col, Form, FormGroup, Button} from 'reactstrap'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import userIcon from '../../assets/images/user.png';
+
+import { AuthContext } from '../.././context/AuthContext';
+import { BASE_URL } from '../../utils/config';
 
 
 const Register = () => {
@@ -13,12 +16,35 @@ const Register = () => {
     password:undefined
 });
 
+const { dispatch } = useContext(AuthContext); 
+const Navigate = useNavigate();
+
   const handleChange = e => {
     setRegisterInfo(prev=>({...prev, [e.target.id]: e.target.value}))
 };
 
-  const handleClick = e => {
+  const handleClick = async e => {
     e.preventDefault();
+    try{
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(registerInfo)
+      });
+      const result = await res.json();
+      if (!res.ok) {
+        alert(result.message);
+      }
+      dispatch({
+        type: 'REGISTER_SUCCESS',
+      });
+      Navigate('/login');
+    }catch(err){
+      console.log(err);
+    }
+
   }
   return (
     <section>

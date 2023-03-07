@@ -1,46 +1,84 @@
-import React,{useRef, useState} from 'react'
+import React,{useRef, useState, useEffect, useContext} from 'react'
 import './tourDetails.css';
 import {Container, Row, Col, Form, ListGroup} from 'reactstrap';
 import {useParams} from 'react-router-dom';
-import tourData from '../../components/FeaturedTour/tourData';
 import Booking from '../../components/Booking/Booking';
 import avatar from '../../assets/images/avatar.jpg';
 
 import useFetch from '../../hooks/useFetch';
 import { BASE_URL } from '../../utils/config';
+import calculateAvgRating from '../../utils/avgRating';
+import { AuthContext } from '../../context/AuthContext';
 
 const TourDetails = () => {
-    const {_id} = useParams ();
+    const {id} = useParams ();
     const reviewMsgRef = useRef('');
     const [reviewRating, setReviewReting] = useState(null);
+    const { user } = useContext(AuthContext);
 
 
     //this is an static data later we will call our API and load our data from database
-    const { data: tour } = useFetch(`${BASE_URL}/tours/${_id}`);
-    console.log('arsalan', _id);
-    console.log('arsalan1', tour);
+    const { data, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
     // destructure properties from tour object
-    const { title, photo, desc, price, maxGroupSize, reviews} = tour;
-    const totalRating = reviews?.reduce((acc, item) => acc + item.rating, 0);
-    const avgRating = totalRating === 0 ? "" : totalRating === 1 ? totalRating : totalRating / reviews?.length;
+    const { title, photo, desc, price, maxGroupSize, reviews} = data;
+
+    const {totalRating, avgRating} = calculateAvgRating(reviews);
 
     // date formate
     const options = { year: "numeric", month: "long", day: "numeric" }; 
 
     //submit request to the server
-    const submitHandler = e =>{
+    const submitHandler = async e =>{
         e.preventDefault()
-        const reviewText = reviewMsgRef.current.value
-        alert(`${reviewText}, ${reviewRating}`)
+        const reviewText = reviewMsgRef.current.value;
         // later we will call our API and send this data to the server
-    }
+        
+        try{
+
+            if( !user || user===undefined || user===null){
+                alert('Please login first');
+            }
+
+            const reviewObj = {
+                reviewText,
+                rating: reviewRating,
+                username: user?.username
+            }
+
+
+            const res = await fetch(`${BASE_URL}/reviews/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }, 
+                credentials: 'include',
+                body: JSON.stringify(reviewObj)
+            })
+
+            const result = await res.json();
+            if(!res.ok){alert(result.message)}
+            alert(result.message);
+        }catch(error){
+            alert(error.message)
+        }
+    };
+
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, []); 
 
 
   return (
     <>
         <section>
             <Container>
-                <Row>
+                {
+                    loading && <h1>Loading...</h1>
+                }
+                {
+                    error && <h1>{error}</h1>
+                }
+                {!loading && !error && <Row>
                     <Col lg="8">
                         <div className="tour__content ">
                         <img src={photo} alt=""/>
@@ -48,7 +86,7 @@ const TourDetails = () => {
                             <h2>{title}</h2>
                             <div className= "d-flex align-items-center gap-5">
                             <span className="tour__rating d-flex align-items-center gap-1">
-                                <i className="ri-star-fill"></i> {avgRating === 0 ? null : avgRating}{totalRating === 0 ? ("Not Rated"): (<span>({reviews.length})</span>)}
+                                <i className="ri-star-fill"></i>  {avgRating} ({totalRating}) reviews
                              </span>
                              <span>
                                 <i className="ri-money-dollar-circle-line"></i> ${price} / per person
@@ -88,9 +126,9 @@ const TourDetails = () => {
                             <div className = "w-100 ">
                             <div className = "d-flex align-items-center justify-content-between ">
                             <div>
-                            <h5>muhib</h5>
+                            <h5>{review.username}</h5>
                             <p>
-                            {new Date( "01-18-2023").toLocaleDateString(
+                            {new Date(review.createdAt).toLocaleDateString(
                             "en-US", options
                             )}
                             </p>
@@ -99,7 +137,7 @@ const TourDetails = () => {
                             <i className="ri-star-fill"></i> {review.rating}
                             </span>
                             </div>
-                            <h6>{review.name}</h6>
+                            <h6>{review.reviewText}</h6>
                             </div>
                             </div>
                             ))}
@@ -108,9 +146,11 @@ const TourDetails = () => {
                         </div>
                     </Col>
                     <Col lg="4">
-                        <Booking tour={tour} avgRating={avgRating}/>
+                        <Booking tour={data} avgRating={avgRating}/>
                     </Col>
-                    </Row>
+                    </Row> 
+                }
+                
             </Container>
         </section>
     </>

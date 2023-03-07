@@ -8,17 +8,17 @@ import useFetch from '../../hooks/useFetch';
 
 
 const BlogDetails = () => {
-    const {id} = useParams ();
+    const {id} = useParams();
 
     //this is an static data later we will call our API and load our data from database
-    const { data:blog } = useFetch(`${BASE_URL}/blogs/${id}}`);
-    console.log(blog);
+    const { data } = useFetch(`${BASE_URL}/blogs/${id}`);
     // destructure properties from tour object
-    const { title, photo, desc, pubDate} = blog;
+    const { title, photo, desc, createdAt} = data;
 
-    function replaceWithBr(descStr) {
-        return descStr.replace(/\n/g, "<br />");
-      }
+      // date formate
+      const options = { year: "numeric", month: "long", day: "numeric" }; 
+
+
     
 
   return (
@@ -29,10 +29,12 @@ const BlogDetails = () => {
                     <Col lg="8">
                         <div className="blog__content ">
                             <h1>{title}</h1>
-                            <h6><em>Published on {pubDate}</em></h6>
+                            <h6><em>Published on {new Date(createdAt).toLocaleDateString(
+                            "en-US", options
+                            )}</em></h6>
                             <img src={photo} alt=""/>
                             <div className = "blog__info">
-                                 <p dangerouslySetInnerHTML={{ __html: replaceWithBr(desc) }} />
+                                 <p>{desc}</p>
                             </div>
 
                         </div>
