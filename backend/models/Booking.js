@@ -9,30 +9,29 @@ const bookingSchema = new mongoose.Schema(
       type: String,
     },
     tourName: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
     fullName: {
       type: String,
       required: true,
     },
     guestSize: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     phone: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     bookAt: {
-        type: Date,
-        required: true,
+      type: Date,
+      required: true,
     },
     totalPrice: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
-
   },
   { timestamps: true }
 );

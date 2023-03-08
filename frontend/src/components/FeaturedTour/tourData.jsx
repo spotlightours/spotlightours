@@ -1,10 +1,10 @@
-import tourImg01 from '../.././assets/images/home.jpeg';
-import tourImg02 from '../.././assets/images/home.jpeg';
-import tourImg03 from '../.././assets/images/home.jpeg';
-import tourImg04 from '../.././assets/images/home.jpeg';
-import tourImg05 from '../.././assets/images/home.jpeg';
-import tourImg06 from '../.././assets/images/home.jpeg';
-import tourImg07 from '../.././assets/images/home.jpeg';
+import tourImg01 from "../.././assets/images/home.jpeg";
+import tourImg02 from "../.././assets/images/home.jpeg";
+import tourImg03 from "../.././assets/images/home.jpeg";
+import tourImg04 from "../.././assets/images/home.jpeg";
+import tourImg05 from "../.././assets/images/home.jpeg";
+import tourImg06 from "../.././assets/images/home.jpeg";
+import tourImg07 from "../.././assets/images/home.jpeg";
 
 const tourData = [
   {
@@ -65,8 +65,7 @@ const tourData = [
     price: 99,
     maxGroupSize: 8,
     desc: "this is the description",
-    reviews: [
-    ],
+    reviews: [],
     avgRating: 4.5,
     photo: tourImg04,
     featured: true,

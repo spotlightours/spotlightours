@@ -1,6 +1,6 @@
-import blogImg01 from '../.././assets/images/home.jpeg';
-import blogImg02 from '../.././assets/images/home.jpeg';
-import blogImg03 from '../.././assets/images/home.jpeg';
+import blogImg01 from "../.././assets/images/home.jpeg";
+import blogImg02 from "../.././assets/images/home.jpeg";
+import blogImg03 from "../.././assets/images/home.jpeg";
 
 const blogData = [
   {
@@ -9,7 +9,6 @@ const blogData = [
     desc: "this is the description im writing for the blog 1 \n to see how it looks like in the browser and how it will look like in the mobile view as well i am writing this description to see how it looks like in the browser and how it will look like in the mobile view as well",
     pubDate: "2020-01-01",
     photo: blogImg01,
-    
   },
   {
     id: "02",

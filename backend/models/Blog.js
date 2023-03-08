@@ -7,14 +7,13 @@ const blogSchema = new mongoose.Schema(
       required: true,
     },
     desc: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
     photo: {
       type: String,
       required: true,
     },
-   
   },
   { timestamps: true }
 );

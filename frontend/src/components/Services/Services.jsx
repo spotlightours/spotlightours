@@ -34,49 +34,47 @@ export default function Services() {
   ];
   return (
     <Section className="services section">
-    <h1 className="section__title">Services</h1>
-    <h2 className="section__subtitle">What we offer</h2>
-    <div className='services__container container grid'>
-      {data.map((service, index) => {
-        return (
-          <div className="service" key={index}>
-            <div className="icon">
-              <img src={service.icon} alt="" />
+      <h1 className="section__title">Services</h1>
+      <h2 className="section__subtitle">What we offer</h2>
+      <div className="services__container container grid">
+        {data.map((service, index) => {
+          return (
+            <div className="service" key={index}>
+              <div className="icon">
+                <img src={service.icon} alt="" />
+              </div>
+              <h3>{service.title}</h3>
+              <p>{service.subTitle}</p>
             </div>
-            <h3>{service.title}</h3>
-            <p>{service.subTitle}</p>
-          </div>
-        );
-      })}
+          );
+        })}
       </div>
     </Section>
   );
 }
 
 const Section = styled.section`
+  .section__subtitle {
+    display: block;
+    margin-bottom: 4rem;
+  }
 
+  .section__title,
+  .section__subtitle {
+    text-align: center;
+  }
 
-.section__subtitle {
-  display: block;
-  margin-bottom: 4rem;
-}
-
-.section__title,
-.section__subtitle {
-  text-align: center;
-}
-  
   .services__container {
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     column-gap: 2rem;
     row-gap: 2rem;
     margin-bottom: var(--mb-2);
-}
-.grid {
-  display: grid;
-  gap: 1.5rem;
-}
+  }
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
 
   .services__title {
     font-size: 1.5rem;
@@ -102,14 +100,14 @@ const Section = styled.section`
   }
   @media screen and (min-width: 280px) and (max-width: 720px) {
     .services__container {
-        grid-template-columns: repeat(1, 1fr);
-        column-gap: 0.5rem;
+      grid-template-columns: repeat(1, 1fr);
+      column-gap: 0.5rem;
     }
   }
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     .services__container {
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1rem;
     }
   }
 `;

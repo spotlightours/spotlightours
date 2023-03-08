@@ -1,71 +1,67 @@
-.slider{
-    width: 100%;
-    height: 90vh;
+.slider {
+  width: 100%;
+  height: 90vh;
 }
-video{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.slider__content__title{
-    position: absolute;
-    width: 100%;
-    height: 80%;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+.slider__content__title {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 
-    font-size: 4.5rem;
-    font-weight: 700;
-    /*text-transform: uppercase;*/
-    
+  font-size: 4.5rem;
+  font-weight: 700;
+  /*text-transform: uppercase;*/
 }
-.slider__content__text{
-    position: absolute;
-    width: 100%;
-    height: 115%;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+.slider__content__text {
+  position: absolute;
+  width: 100%;
+  height: 115%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 
-    font-size: 2rem;
-    font-weight: 600;
-    text-align: center;
-    gap: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  gap: 2rem;
 }
-.slider__content__btn{
-    
-    padding: 0.5rem 1rem;
-    border: 0.2rem solid white;
-    color: white;
-    background-color: transparent;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.slider__content__btn {
+  padding: 0.5rem 1rem;
+  border: 0.2rem solid white;
+  color: white;
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.slider__content__btn:hover{
-    background-color: var(--primary-color);
-    color: black;
+.slider__content__btn:hover {
+  background-color: var(--primary-color);
+  color: black;
 }
 @media only screen and (max-width: 992px) {
+  .slider__content__title {
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
 
-    .slider__content__title{
-        font-size: 2.5rem;
-        font-weight: 500;
-    }
-
-    .slider__content__text{
-        font-size: 1.3rem;
-        font-weight: 500;;
-    }
-
+  .slider__content__text {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
 }

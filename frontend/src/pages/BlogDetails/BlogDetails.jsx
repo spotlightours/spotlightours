@@ -1,49 +1,47 @@
-import React from 'react';
-import './blogDetails.css';
-import {Container, Row, Col} from 'reactstrap';
-import {useParams} from 'react-router-dom';
+import React from "react";
+import "./blogDetails.css";
+import { Container, Row, Col } from "reactstrap";
+import { useParams } from "react-router-dom";
 
-import { BASE_URL } from '../../utils/config';
-import useFetch from '../../hooks/useFetch';
-
+import { BASE_URL } from "../../utils/config";
+import useFetch from "../../hooks/useFetch";
 
 const BlogDetails = () => {
-    const {id} = useParams();
+  const { id } = useParams();
 
-    //this is an static data later we will call our API and load our data from database
-    const { data } = useFetch(`${BASE_URL}/blogs/${id}`);
-    // destructure properties from tour object
-    const { title, photo, desc, createdAt} = data;
+  //this is an static data later we will call our API and load our data from database
+  const { data } = useFetch(`${BASE_URL}/blogs/${id}`);
+  // destructure properties from tour object
+  const { title, photo, desc, createdAt } = data;
 
-      // date formate
-      const options = { year: "numeric", month: "long", day: "numeric" }; 
-
-
-    
+  // date formate
+  const options = { year: "numeric", month: "long", day: "numeric" };
 
   return (
     <>
-        <section>
-            <Container  className='blog_details-section'>
-                <Row>
-                    <Col lg="8">
-                        <div className="blog__content ">
-                            <h1>{title}</h1>
-                            <h6><em>Published on {new Date(createdAt).toLocaleDateString(
-                            "en-US", options
-                            )}</em></h6>
-                            <img src={photo} alt=""/>
-                            <div className = "blog__info">
-                                 <p>{desc}</p>
-                            </div>
-
-                        </div>
-                    </Col>
-                    </Row>
-            </Container>
-        </section>
+      <section>
+        <Container className="blog_details-section">
+          <Row>
+            <Col lg="8">
+              <div className="blog__content ">
+                <h1>{title}</h1>
+                <h6>
+                  <em>
+                    Published on{" "}
+                    {new Date(createdAt).toLocaleDateString("en-US", options)}
+                  </em>
+                </h6>
+                <img src={photo} alt="" />
+                <div className="blog__info">
+                  <p>{desc}</p>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default BlogDetails
+export default BlogDetails;
