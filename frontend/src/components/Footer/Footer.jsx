@@ -6,20 +6,39 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.jpg";
 const quick__links = [
   {
-    path: "/home",
-    display: "Desert_Safari",
+    path: "/",
+    display: "Home",
   },
   {
-    path: "/home",
-    display: "Desert_Experience",
+    path: "/tours",
+    display: "Tours",
   },
   {
-    path: "/home",
-    display: "Overnight_Desert_Camping",
+    path: "/blogs",
+    display: "Blogs",
   },
   {
-    path: "/home",
-    display: "Dune_Buggies",
+    path: "/cars",
+    display: "Rental_Cars",
+  },
+];
+
+const quick__links1 = [
+  {
+    path: "/login",
+    display: "Login",
+  },
+  {
+    path: "/register",
+    display: "Register",
+  },
+  {
+    path: "/blogs",
+    display: "Blogs",
+  },
+  {
+    path: "/tours",
+    display: "Tours",
   },
 ];
 
@@ -32,27 +51,44 @@ const Footer = () => {
           <Col lg="3">
             <div className="logo">
               <img src={logo} alt="" />
-              <p>Sac Um e ek eS LLL Chea CBD op Rosy 1 a Commodi, enim.</p>
+              <p>
+                We are available for Dubai Tourism, and Car Rental Services with
+                Drivers in Dubai.
+              </p>
 
               <div className="social__links d-flex align-items-center gap-4">
                 <span>
-                  <Link to="#">
-                    <i className="ri-youtube-line"></i>
+                  <Link to="tel:+971 58 252 0515" target="_blank">
+                    <i className="bx bxs-phone"></i>
                   </Link>
                 </span>
                 <span>
-                  <Link to="#">
-                    <i className="ri-github-fill"></i>
+                  <Link to="mailto:contact@spotlightours.com" target="_blank">
+                    <i className="bx bxl-gmail"></i>
                   </Link>
                 </span>
                 <span>
-                  <Link to="#">
-                    <i className="ri-facebook-circle-line"></i>
+                  <Link
+                    to="https://www.instagram.com/spotlightours/"
+                    target="_blank"
+                  >
+                    <i className="bx bxl-instagram-alt"></i>
                   </Link>
                 </span>
                 <span>
-                  <Link to="#">
-                    <i className="ri-instagram-line"></i>
+                  <Link
+                    to="https://www.facebook.com/spotlightour"
+                    target="_blank"
+                  >
+                    <i className="bx bxl-facebook"></i>
+                  </Link>
+                </span>
+                <span>
+                  <Link
+                    to="https://www.tiktok.com/@spotlightour"
+                    target="_blank"
+                  >
+                    <i className="bx bxl-tiktok"></i>
                   </Link>
                 </span>
               </div>
@@ -71,7 +107,7 @@ const Footer = () => {
           <Col lg="3">
             <h5 className=" footer__link-title">Quick Links</h5>
             <ListGroup className="footer__quick-links ">
-              {quick__links.map((item, index) => (
+              {quick__links1.map((item, index) => (
                 <ListGroupItem key={index} className="ps-0 border-0">
                   <Link to={item.path}>{item.display} </Link>
                 </ListGroupItem>
@@ -88,7 +124,7 @@ const Footer = () => {
                   </span>
                   Address:
                 </h6>
-                <p className="mb-0">UEA</p>
+                <p className="mb-0">Dubai, UAE</p>
               </ListGroupItem>
 
               <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
@@ -108,7 +144,7 @@ const Footer = () => {
                   </span>
                   Phone:
                 </h6>
-                <p className="mb-0">0000000000000</p>
+                <p className="mb-0">+971 58 252 0515</p>
               </ListGroupItem>
             </ListGroup>
           </Col>
