@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./booking.css";
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { BASE_URL } from "../../utils/config";
 
 const Booking = ({ tour, avgRating }) => {
-  const { price, reviews } = tour;
+  const { price, reviews, title } = tour;
   const navigate = useNavigate();
 
+  const { user } = useContext(AuthContext);
+
+  let currentDate = new Date().toJSON().slice(0, 10);
+
   const [bookingInfo, setBookingInfo] = useState({
-    userId: "01",
-    userEmail: "example@gmail.com",
+    userId: user && user._id,
+    userEmail: user && user.email,
+    tourName: title,
     fullName: "",
+    guestSize: "",
     phone: "",
     bookAt: "",
-    guestSize: "",
   });
   const handleChange = (e) => {
     setBookingInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -24,10 +31,38 @@ const Booking = ({ tour, avgRating }) => {
     Number(price) * Number(bookingInfo.guestSize) + Number(serviceFee);
 
   //send booking info to the server
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    navigate("/thankyou");
+
+    console.log(bookingInfo);
+
+    try {
+      if (!user || user === undefined || user === null) {
+        return alert("Please login to book a tour");
+      }
+      const res = await fetch(`${BASE_URL}/bookings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(bookingInfo),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        alert(result.message);
+      }
+      navigate("/thankyou");
+    } catch (error) {
+      alert(error.message);
+    }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="booking">
       <div className="booking__top d-flex align-items-center justify-content-between">
@@ -36,7 +71,8 @@ const Booking = ({ tour, avgRating }) => {
           <span>/per person</span>
         </h3>
         <span className="tour__rating d-flex align-items-center gap-1">
-          <i className="ri-star-fill"></i> {avgRating}
+          <i className="ri-star-fill"></i>
+          {avgRating === 0 ? null : avgRating} ({reviews?.length} reviews)
         </span>
       </div>
       <div className="booking__form">
@@ -65,6 +101,7 @@ const Booking = ({ tour, avgRating }) => {
               type="date"
               placeholder=""
               id="bookAt"
+              min={currentDate}
               required
               onChange={handleChange}
             />

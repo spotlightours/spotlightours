@@ -20,6 +20,20 @@ const nav__links = [
     display: "Blogs",
   },
 ];
+const nav__links1 = [
+  {
+    path: "/addTours",
+    display: "addTours",
+  },
+  {
+    path: "/blogs",
+    display: "addBlogs",
+  },
+  {
+    path: "/",
+    display: "Bookings",
+  },
+];
 
 const Navbar = () => {
   const menuRef = useRef(null);
@@ -47,18 +61,20 @@ const Navbar = () => {
 
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <ul className="menu d-flex align-items-center gap-3">
-                {nav__links.map((item, index) => (
-                  <li className="nav__item" key={index}>
-                    <NavLink
-                      to={item.path}
-                      className={(navClass) =>
-                        navClass.isActive ? "active__link" : ""
-                      }
-                    >
-                      {item.display}
-                    </NavLink>
-                  </li>
-                ))}
+                {(user && user[1] === "admin" ? nav__links1 : nav__links).map(
+                  (item, index) => (
+                    <li className="nav__item" key={index}>
+                      <NavLink
+                        to={item.path}
+                        className={(navClass) =>
+                          navClass.isActive ? "active__link" : ""
+                        }
+                      >
+                        {item.display}
+                      </NavLink>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
 
@@ -66,7 +82,7 @@ const Navbar = () => {
               <div className="nav__btns d-flex align-items-center gap-3">
                 {user ? (
                   <>
-                    <h5 className="mb-0">{user.username}</h5>
+                    <h5 className="mb-0">{user[0].username}</h5>
                     <Button className="btn btn-dark" onClick={logout}>
                       Logout
                     </Button>

@@ -6,13 +6,17 @@ export const createBooking = async (req, res) => {
   const newBooking = new Booking(req.body);
   try {
     const savedBooking = await newBooking.save();
-    res.status(200).json({
-      success: true,
-      message: "Booking Submitted",
-      data: savedBooking,
-    });
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "Booking Submitted",
+        data: savedBooking,
+      });
   } catch (error) {
-    res.status(500).json({ success: false, message: "internal server error" });
+    res
+      .status(500)
+      .json({ success: false, message: "internal server error in booking" });
   }
 };
 

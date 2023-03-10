@@ -23,6 +23,8 @@ const TourDetails = () => {
 
   const { totalRating, avgRating } = calculateAvgRating(reviews);
 
+  console.log(user);
+
   // date formate
   const options = { year: "numeric", month: "long", day: "numeric" };
 
@@ -81,8 +83,9 @@ const TourDetails = () => {
                     <h2>{title}</h2>
                     <div className="d-flex align-items-center gap-5">
                       <span className="tour__rating d-flex align-items-center gap-1">
-                        <i className="ri-star-fill"></i> {avgRating} (
-                        {totalRating}) reviews
+                        <i className="ri-star-fill"></i>{" "}
+                        {avgRating === 0 ? null : avgRating} ({reviews?.length}{" "}
+                        reviews)
                       </span>
                       <span>
                         <i className="ri-money-dollar-circle-line"></i> ${price}{" "}

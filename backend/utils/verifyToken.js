@@ -8,6 +8,7 @@ export const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = decoded;
+    console.log("pass toke verify");
     next();
   } catch (error) {
     res.status(401).json({ success: false, message: "Unauthorized" });
@@ -29,6 +30,7 @@ export const verifyUser = (req, res, next) => {
 export const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, next, () => {
     if (req.user.id === req.params.id && req.user.role === "admin") {
+      console.log("pass admin verify");
       next();
     } else {
       res

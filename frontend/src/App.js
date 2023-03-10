@@ -11,6 +11,7 @@ import TourDetails from "./pages/TourDetails/TourDetails";
 import BlogDetails from "./pages/BlogDetails/BlogDetails";
 import ThankYou from "./pages/ThankYou/ThankYou";
 import Blogs from "./pages/Blogs/Blogs";
+import AddTours from "./pages/Admin/AddTours";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/thankyou" element={<ThankYou />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/addTours" element={<AddTours />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
