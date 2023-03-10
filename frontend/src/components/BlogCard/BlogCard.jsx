@@ -23,7 +23,7 @@ const BlogCard = ({ blog }) => {
               Published On{" "}
               {new Date(createdAt).toLocaleDateString("en-US", options)}
             </span>
-            <p>{desc}</p>
+            <div dangerouslySetInnerHTML={{ __html: desc }}></div>
             <button className="btn booking_btn">
               <Link to={`/blogs/${_id}`}>Read More</Link>
             </button>

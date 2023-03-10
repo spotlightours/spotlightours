@@ -14,6 +14,7 @@ import TourAdded from "./pages/ThankYou/TourAdded";
 import BlogAdded from "./pages/ThankYou/BlogAdded";
 import Blogs from "./pages/Blogs/Blogs";
 import AddTours from "./pages/Admin/AddTours";
+import AddBlogs from "./pages/Admin/AddBlogs";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addTours" element={<AddTours />}></Route>
+          <Route path="/addBlogs" element={<AddBlogs />}></Route>
           <Route path="/tourBooked" element={<TourBooked />}></Route>
           <Route path="/tourAdded" element={<TourAdded />}></Route>
           <Route path="/blogAdded" element={<BlogAdded />}></Route>

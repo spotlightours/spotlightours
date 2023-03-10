@@ -23,11 +23,11 @@ const nav__links = [
 const nav__links1 = [
   {
     path: "/addTours",
-    display: "addTours",
+    display: "AddTours",
   },
   {
-    path: "/blogs",
-    display: "addBlogs",
+    path: "/addBlogs",
+    display: "AddBlogs",
   },
   {
     path: "/",

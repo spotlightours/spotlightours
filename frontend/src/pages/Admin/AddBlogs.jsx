@@ -3,45 +3,40 @@ import "./admin.css";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { BASE_URL } from "../../utils/config";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../.././context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const AddTours = () => {
-  const [tourInfo, setTourInfo] = useState({
+const AddBlogs = () => {
+  const [blogInfo, setBlogInfo] = useState({
     title: undefined,
-    city: undefined,
-    price: undefined,
-    maxGroupSize: undefined,
     desc: undefined,
-    reviews: [],
     photo: undefined,
-    featured: undefined,
   });
   const { user } = useContext(AuthContext);
   const Navigate = useNavigate();
 
   const handleChange = (e) => {
-    setTourInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setBlogInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-  //console.log(tourInfo);
+  //console.log(blogInfo);
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${BASE_URL}/tours`, {
+      const res = await fetch(`${BASE_URL}/blogs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify(tourInfo),
+        body: JSON.stringify(blogInfo),
       });
       const result = await res.json();
       if (!res.ok) {
         alert(result.message);
       }
-      Navigate("/tourAdded");
+      Navigate("/blogAdded");
     } catch (err) {
       console.log(err);
     }
@@ -54,8 +49,7 @@ const AddTours = () => {
             <Col lg="6" className="m-auto">
               <div className="admin__container d-flex justify-content-between">
                 <div className="admin__form">
-                  <h2>Add New Tour</h2>
-
+                  <h2>Add New Blog</h2>
                   <Form onSubmit={handleClick}>
                     <FormGroup>
                       <input
@@ -63,42 +57,6 @@ const AddTours = () => {
                         placeholder="Title"
                         required
                         id="title"
-                        onChange={handleChange}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <input
-                        type="text"
-                        placeholder="City"
-                        required
-                        id="city"
-                        onChange={handleChange}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <input
-                        type="number"
-                        placeholder="Price"
-                        required
-                        id="price"
-                        onChange={handleChange}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <input
-                        type="number"
-                        placeholder="Max Group Size"
-                        required
-                        id="maxGroupSize"
-                        onChange={handleChange}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <input
-                        type="boolean"
-                        placeholder="Featured: true or false"
-                        required
-                        id="featured"
                         onChange={handleChange}
                       />
                     </FormGroup>
@@ -117,15 +75,16 @@ const AddTours = () => {
                         placeholder="Write Something..."
                         id="desc"
                         onChange={(e) => {
-                          setTourInfo((prev) => ({ ...prev, desc: e }));
+                          setBlogInfo((prev) => ({ ...prev, desc: e }));
                         }}
                       />
                     </FormGroup>
+
                     <Button
                       className="btn secondary_btn auth__btn"
                       type="submit"
                     >
-                      Add New Tour
+                      Add New Blog
                     </Button>
                   </Form>
                 </div>
@@ -140,4 +99,4 @@ const AddTours = () => {
   );
 };
 
-export default AddTours;
+export default AddBlogs;

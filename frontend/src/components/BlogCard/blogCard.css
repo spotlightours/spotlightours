@@ -11,6 +11,9 @@
 .blog__info h2 {
   font-size: 1.5rem;
 }
+.blog__info h1 {
+  text-align: left;
+}
 .blog__info span {
   line-height: 30px;
   font-size: 1rem;
@@ -18,7 +21,7 @@
   color: var(--text-color);
 }
 
-.blog__info p {
+.blog__info div {
   line-height: 30px;
   font-size: 1rem;
   color: var(--text-color);

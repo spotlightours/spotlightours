@@ -45,7 +45,7 @@ ul {
   list-style: none;
 }
 .primary_btn {
-  background: var(--secondary-color) !important;
+  background: var(--primary-color) !important;
   border: none !important;
   border-radius: 50px !important;
   padding: 0.4rem 1.5rem !important;

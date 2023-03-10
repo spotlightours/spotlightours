@@ -13,6 +13,8 @@ const BlogDetails = () => {
   const { data } = useFetch(`${BASE_URL}/blogs/${id}`);
   // destructure properties from tour object
   const { title, photo, desc, createdAt } = data;
+  /* const replcedDesc = desc.replace(/\\n/g, "\n");
+  console.log(replcedDesc);*/
 
   // date formate
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -33,7 +35,7 @@ const BlogDetails = () => {
                 </h6>
                 <img src={photo} alt="" />
                 <div className="blog__info">
-                  <p>{desc}</p>
+                  <div dangerouslySetInnerHTML={{ __html: desc }}></div>
                 </div>
               </div>
             </Col>
