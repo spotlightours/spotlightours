@@ -41,7 +41,7 @@ const Login = () => {
       console.log(result.data);
       dispatch({
         type: "LOGIN_SUCCESS",
-        payload: [result.data, result.role],
+        payload: result.data,
       });
       Navigate("/");
     } catch (err) {

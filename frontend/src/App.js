@@ -9,7 +9,9 @@ import Register from "./pages/UserProfile/Register";
 import AllTours from "./pages/AllTours/AllTours";
 import TourDetails from "./pages/TourDetails/TourDetails";
 import BlogDetails from "./pages/BlogDetails/BlogDetails";
-import ThankYou from "./pages/ThankYou/ThankYou";
+import TourBooked from "./pages/ThankYou/TourBooked";
+import TourAdded from "./pages/ThankYou/TourAdded";
+import BlogAdded from "./pages/ThankYou/BlogAdded";
 import Blogs from "./pages/Blogs/Blogs";
 import AddTours from "./pages/Admin/AddTours";
 
@@ -24,10 +26,12 @@ function App() {
           <Route path="/blogs" element={<Blogs />}></Route>
           <Route path="/tours/:id" element={<TourDetails />}></Route>
           <Route path="/blogs/:id" element={<BlogDetails />}></Route>
-          <Route path="/thankyou" element={<ThankYou />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addTours" element={<AddTours />}></Route>
+          <Route path="/tourBooked" element={<TourBooked />}></Route>
+          <Route path="/tourAdded" element={<TourAdded />}></Route>
+          <Route path="/blogAdded" element={<BlogAdded />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

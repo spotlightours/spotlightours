@@ -50,7 +50,7 @@ export const login = async (req, res) => {
         .json({ success: false, message: "Wrong password" });
     }
 
-    const { password, role, ...rest } = user._doc;
+    const { password, ...rest } = user._doc;
 
     const token = jwt.sign(
       { id: user._id, role: user.role },
@@ -67,7 +67,6 @@ export const login = async (req, res) => {
       .json({
         token,
         data: { ...rest },
-        role,
       });
   } catch (error) {
     res.status(500).json({ success: false, message: "Failed to login" });
