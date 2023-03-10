@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 import { useParams } from "react-router-dom";
 import Booking from "../../components/Booking/Booking";
 import avatar from "../../assets/images/avatar.jpg";
-
+import ReactStars from "react-rating-stars-component";
 import useFetch from "../../hooks/useFetch";
 import { BASE_URL } from "../../utils/config";
 import calculateAvgRating from "../../utils/avgRating";
@@ -13,7 +13,7 @@ import { AuthContext } from "../../context/AuthContext";
 const TourDetails = () => {
   const { id } = useParams();
   const reviewMsgRef = useRef("");
-  const [reviewRating, setReviewReting] = useState(null);
+  const [reviewRating, setReviewReting] = useState(5);
   const { user } = useContext(AuthContext);
 
   //this is an static data later we will call our API and load our data from database
@@ -22,8 +22,6 @@ const TourDetails = () => {
   const { title, photo, desc, price, maxGroupSize, reviews } = data;
 
   const { totalRating, avgRating } = calculateAvgRating(reviews);
-
-  console.log(user);
 
   // date formate
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -84,8 +82,8 @@ const TourDetails = () => {
                     <div className="d-flex align-items-center gap-5">
                       <span className="tour__rating d-flex align-items-center gap-1">
                         <i className="ri-star-fill"></i>{" "}
-                        {avgRating === 0 ? null : avgRating} ({reviews?.length}{" "}
-                        reviews)
+                        {avgRating === 0 ? null : avgRating.toFixed(1)} (
+                        {reviews?.length} reviews)
                       </span>
                       <span>
                         <i className="ri-money-dollar-circle-line"></i> ${price}{" "}
@@ -96,7 +94,7 @@ const TourDetails = () => {
                       </span>
                     </div>
                     <h5>Description</h5>
-                    <p>{desc}</p>
+                    <div dangerouslySetInnerHTML={{ __html: desc }}></div>
                   </div>
 
                   {/* Tour Reviews */}
@@ -104,21 +102,12 @@ const TourDetails = () => {
                     <h4> Reviews ({reviews?.length} reviews)</h4>
                     <Form onSubmit={submitHandler}>
                       <div className="d-flex align-items-center gap-3 mb-4 rating_group">
-                        <span onClick={() => setReviewReting(1)}>
-                          <i className="ri-star-s-fill"></i>
-                        </span>
-                        <span onClick={() => setReviewReting(2)}>
-                          <i className="ri-star-s-fill "></i>
-                        </span>
-                        <span onClick={() => setReviewReting(3)}>
-                          <i className="ri-star-s-fill "></i>
-                        </span>
-                        <span onClick={() => setReviewReting(4)}>
-                          <i className="ri-star-s-fill"></i>
-                        </span>
-                        <span onClick={() => setReviewReting(5)}>
-                          <i className="ri-star-s-fill"></i>
-                        </span>
+                        <ReactStars
+                          count={5}
+                          onChange={setReviewReting}
+                          size={28}
+                          activeColor="#ffd700"
+                        />
                       </div>
                       <div className="review__input">
                         <input
