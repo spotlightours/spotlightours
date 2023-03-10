@@ -76,6 +76,7 @@ export const getAllTour = async (req, res) => {
 
   try {
     const allTour = await Tour.find({})
+      .sort({ _id: -1 })
       .populate("reviews")
       .skip(page * 9)
       .limit(9);
@@ -94,6 +95,7 @@ export const getAllTour = async (req, res) => {
 export const getFeaturedTour = async (req, res) => {
   try {
     const featuredTour = await Tour.find({ featured: true })
+      .sort({ _id: -1 })
       .populate("reviews")
       .limit(8);
     res.status(200).json({

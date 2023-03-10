@@ -33,7 +33,7 @@ export const getSingleBlog = async (req, res) => {
 //getAll a Blog
 export const getAllBlog = async (req, res) => {
   try {
-    const allBlog = await Blog.find({});
+    const allBlog = await Blog.find({}).sort({ _id: -1 });
     res.status(200).json({
       success: true,
       message: "All Blogs found successfully",

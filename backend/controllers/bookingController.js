@@ -6,13 +6,11 @@ export const createBooking = async (req, res) => {
   const newBooking = new Booking(req.body);
   try {
     const savedBooking = await newBooking.save();
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Booking Submitted",
-        data: savedBooking,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Booking Submitted",
+      data: savedBooking,
+    });
   } catch (error) {
     res
       .status(500)
@@ -39,7 +37,7 @@ export const getSingleBooking = async (req, res) => {
 //getAll a Booking
 export const getAllBooking = async (req, res) => {
   try {
-    const allBooking = await Booking.find({});
+    const allBooking = await Booking.find({}).sort({ _id: -1 });
     res.status(200).json({
       success: true,
       message: "All Bookings found successfully",
