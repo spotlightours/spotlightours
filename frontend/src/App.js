@@ -15,6 +15,7 @@ import BlogAdded from "./pages/ThankYou/BlogAdded";
 import Blogs from "./pages/Blogs/Blogs";
 import AddTours from "./pages/Admin/AddTours";
 import AddBlogs from "./pages/Admin/AddBlogs";
+import ShowBookings from "./pages/Admin/ShowBookings";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/tourBooked" element={<TourBooked />}></Route>
           <Route path="/tourAdded" element={<TourAdded />}></Route>
           <Route path="/blogAdded" element={<BlogAdded />}></Route>
+          <Route path="/showBookings" element={<ShowBookings />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

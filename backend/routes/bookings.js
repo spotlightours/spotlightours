@@ -3,6 +3,11 @@ import {
   createBooking,
   getAllBooking,
   getSingleBooking,
+  updateBooking,
+  getBookingCount,
+  getPendingBooking,
+  getDoneBooking,
+  getCancelledBooking,
 } from "../controllers/bookingController.js";
 import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 const router = express.Router();
@@ -11,6 +16,11 @@ const router = express.Router();
 
 router.post("/", verifyUser, createBooking);
 router.get("/:id", verifyUser, getSingleBooking);
-router.get("/", verifyAdmin, getAllBooking);
+router.get("/", getAllBooking);
+router.put("/:id", verifyAdmin, updateBooking);
+router.get("/search/getBookingCount", getBookingCount);
+router.get("/search/getPendingBooking", getPendingBooking);
+router.get("/search/getDoneBooking", getDoneBooking);
+router.get("/search/getCancelledBooking", getCancelledBooking);
 
 export default router;
