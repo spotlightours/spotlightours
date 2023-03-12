@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Row, Container, Col } from "reactstrap";
 import "./admin.css";
 import ShowBookingCard from "../../components/ShowBookingCard/ShowBookingCard";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 import useFetch from "../../hooks/useFetch";
@@ -13,9 +12,6 @@ const ShowBookings = () => {
   const [page, setPage] = useState(0);
   const [status, setStatus] = useState(`${BASE_URL}/bookings`);
   const { user } = useContext(AuthContext);
-
-  console.log("Page", page);
-  console.log("Status", status);
 
   const { data: bookings, loading, error } = useFetch(`${status}?page=${page}`);
 

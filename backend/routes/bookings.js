@@ -17,7 +17,7 @@ const router = express.Router();
 router.post("/", verifyUser, createBooking);
 router.get("/:id", verifyUser, getSingleBooking);
 router.get("/", getAllBooking);
-router.put("/:id", verifyAdmin, updateBooking);
+router.put("/:id", updateBooking);
 router.get("/search/getBookingCount", getBookingCount);
 router.get("/search/getPendingBooking", getPendingBooking);
 router.get("/search/getDoneBooking", getDoneBooking);

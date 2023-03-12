@@ -142,6 +142,6 @@ export const getBookingCount = async (req, res) => {
       data: count,
     });
   } catch (error) {
-    res.status(404).json({ success: false, message: "not found" });
+    res.status(404).json({ success: false, message: "not not found" });
   }
 };
