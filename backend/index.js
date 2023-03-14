@@ -10,6 +10,9 @@ import authRoute from "./routes/auth.js";
 import reviewRoute from "./routes/reviews.js";
 import bookingRoute from "./routes/bookings.js";
 import blogRoute from "./routes/blogs.js";
+import carRoute from "./routes/cars.js";
+import carReviewRoute from "./routes/carReviews.js";
+import carBookingRoute from "./routes/carBookings.js";
 
 dotenv.config();
 const app = express();
@@ -50,6 +53,9 @@ app.use("/api/v1/users", userRoute);
 app.use("/api/v1/reviews", reviewRoute);
 app.use("/api/v1/bookings", bookingRoute);
 app.use("/api/v1/blogs", blogRoute);
+app.use("/api/v1/cars", carRoute);
+app.use("/api/v1/carReviews", carReviewRoute);
+app.use("/api/v1/carBookings", carBookingRoute);
 
 app.listen(port, () => {
   connect();

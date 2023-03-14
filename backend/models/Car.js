@@ -28,18 +28,18 @@ const carSchema = new mongoose.Schema(
       required: true,
     },
     gearbox: {
-      type: Number,
+      type: String,
       required: true,
     },
 
     reviews: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Review",
+        ref: "CarReview",
       },
     ],
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Tour", tourSchema);
+export default mongoose.model("Car", carSchema);

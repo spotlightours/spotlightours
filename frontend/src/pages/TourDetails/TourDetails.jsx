@@ -82,8 +82,8 @@ const TourDetails = () => {
                     <div className="d-flex align-items-center gap-5">
                       <span className="tour__rating d-flex align-items-center gap-1">
                         <i className="ri-star-fill"></i>{" "}
-                        {avgRating === 0 ? null : avgRating.toFixed(1)} (
-                        {reviews?.length} reviews)
+                        {avgRating === 0 ? null : avgRating} ({reviews?.length}{" "}
+                        reviews)
                       </span>
                       <span>
                         <i className="ri-money-dollar-circle-line"></i> ${price}{" "}

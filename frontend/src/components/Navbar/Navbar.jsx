@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import { Container, Row, Button } from "reactstrap";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
@@ -16,6 +16,10 @@ const nav__links = [
     display: "Tours",
   },
   {
+    path: "/Cars",
+    display: "Cars",
+  },
+  {
     path: "/blogs",
     display: "Blogs",
   },
@@ -30,7 +34,11 @@ const nav__links1 = [
     display: "AddBlogs",
   },
   {
-    path: "/",
+    path: "/addCars",
+    display: "AddCars",
+  },
+  {
+    path: "/showBookings",
     display: "Bookings",
   },
 ];
