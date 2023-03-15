@@ -39,7 +39,11 @@ const nav__links1 = [
   },
   {
     path: "/showBookings",
-    display: "Bookings",
+    display: "Tours",
+  },
+  {
+    path: "/showCarBookings",
+    display: "Cars",
   },
 ];
 

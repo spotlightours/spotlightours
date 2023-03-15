@@ -1,15 +1,15 @@
 import React from "react";
 import { Row, Container, Col } from "reactstrap";
 import "./imageGallery.css";
-import Img1 from "../.././assets/images/home.jpeg";
-import Img2 from "../.././assets/images/home.jpeg";
-import Img3 from "../.././assets/images/home.jpeg";
-import Img4 from "../.././assets/images/logo.jpg";
-import Img5 from "../.././assets/images/home.jpeg";
-import Img6 from "../.././assets/images/home.jpeg";
-import Img7 from "../.././assets/images/home.jpeg";
-import Img8 from "../.././assets/images/home.jpeg";
-import Img9 from "../.././assets/images/home.jpeg";
+import Img1 from "../.././assets/images/img1.jpg";
+import Img2 from "../.././assets/images/img2.jpg";
+import Img3 from "../.././assets/images/img3.jpg";
+import Img4 from "../.././assets/images/img4.jpg";
+import Img5 from "../.././assets/images/img5.jpg";
+import Img6 from "../.././assets/images/img6.jpg";
+import Img7 from "../.././assets/images/img7.jpeg";
+import Img8 from "../.././assets/images/img8.jpg";
+import Img9 from "../.././assets/images/img9.jpg";
 
 const galleryImages = [Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8, Img9];
 

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./showBookingCard.css";
+import ".././ShowBookingCard/showBookingCard.css";
 import { Container, Row, Col } from "reactstrap";
 import { BASE_URL } from "../../utils/config";
 
-const ShowBookingCard = ({ booking }) => {
+const ShowCarBookingCard = ({ car }) => {
   const [changeStatus, setChangeStatus] = useState({
     status: undefined,
   });
@@ -12,14 +12,15 @@ const ShowBookingCard = ({ booking }) => {
 
   const {
     _id,
-    tourName,
+    carName,
     fullName,
-    guestSize,
-    phone,
-    bookAt,
     userEmail,
+    phone,
+    bookFrom,
+    bookTo,
+    createdAt,
     status,
-  } = booking;
+  } = car;
   // date formate
   const options = { year: "numeric", month: "long", day: "numeric" };
 
@@ -31,7 +32,7 @@ const ShowBookingCard = ({ booking }) => {
 
   const handleClick = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/bookings/${_id}`, {
+      const res = await fetch(`${BASE_URL}/carBookings/${_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -56,20 +57,26 @@ const ShowBookingCard = ({ booking }) => {
       <Row className="show-booking__card">
         <Col lg="12">
           <div className="show-booking__info">
-            <h2>{tourName}</h2>
+            <h2>{carName}</h2>
             <h3>
               Cutomer Name:{" "}
               {fullName.charAt(0).toUpperCase() + fullName.slice(1)}
             </h3>
-            <h3>Cutomer Email: {userEmail}</h3>
-            <h3>No of Tickets: {guestSize}</h3>
+            <h3>Customer Email: {userEmail}</h3>
             <h3>Phone No: {phone}</h3>
             <h3>
-              Booked To: {new Date(bookAt).toLocaleDateString("en-US", options)}
+              Pick-Up Date:{" "}
+              {new Date(bookFrom).toLocaleDateString("en-US", options)}{" "}
+              {bookFrom.slice(11, 16)}
+            </h3>
+            <h3>
+              Drop-off Date:{" "}
+              {new Date(bookTo).toLocaleDateString("en-US", options)}{" "}
+              {bookTo.slice(11, 16)}
             </h3>
             <p>
               Published On{" "}
-              {new Date(bookAt).toLocaleDateString("en-US", options)}
+              {new Date(createdAt).toLocaleDateString("en-US", options)}
             </p>
             {status === "Pending" ? (
               <div>
@@ -108,4 +115,4 @@ const ShowBookingCard = ({ booking }) => {
     </Container>
   );
 };
-export default ShowBookingCard;
+export default ShowCarBookingCard;

@@ -20,6 +20,7 @@ const Blogs = () => {
   useEffect(() => {
     const pages = Math.ceil(blogCount / 8); //later we will use backend data count
     setPageCount(pages);
+    window.scrollTo(0, 0);
   }, [page, blogCount, blogs]);
 
   return (

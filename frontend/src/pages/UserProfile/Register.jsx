@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./login.css";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,6 +16,10 @@ const Register = () => {
 
   const { dispatch } = useContext(AuthContext);
   const Navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleChange = (e) => {
     setRegisterInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));

@@ -1,29 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Row, Container, Col } from "reactstrap";
 import "./admin.css";
-import ShowBookingCard from "../../components/ShowBookingCard/ShowBookingCard";
+import ShowCarBookingCard from "../../components/ShowCarBookingCard/ShowCarBookingCard";
 import { AuthContext } from "../../context/AuthContext";
 
 import useFetch from "../../hooks/useFetch";
 import { BASE_URL } from "../../utils/config";
 
-const ShowBookings = () => {
+const ShowCarBookings = () => {
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
-  const [status, setStatus] = useState(`${BASE_URL}/bookings`);
+  const [status, setStatus] = useState(`${BASE_URL}/carBookings`);
   const { user } = useContext(AuthContext);
 
-  const { data: bookings, loading, error } = useFetch(`${status}?page=${page}`);
+  const { data: cars, loading, error } = useFetch(`${status}?page=${page}`);
 
   const { data: bookingCount } = useFetch(
-    `${BASE_URL}/bookings/search/getBookingCount`
+    `${BASE_URL}/carBookings/search/getBookingCount`
   );
 
   useEffect(() => {
     const pages = Math.ceil(bookingCount / 8); //later we will use backend data count
     setPageCount(pages);
     window.scrollTo(0, 0);
-  }, [page, bookingCount, bookings]);
+  }, [page, bookingCount, cars]);
 
   return (
     <>
@@ -45,7 +45,7 @@ const ShowBookings = () => {
                 <button
                   className="btn btn-dark"
                   onClick={() => {
-                    setStatus(`${BASE_URL}/bookings`);
+                    setStatus(`${BASE_URL}/carBookings`);
                     setPage(0);
                   }}
                 >
@@ -54,7 +54,7 @@ const ShowBookings = () => {
                 <button
                   className="btn btn-dark"
                   onClick={() => {
-                    setStatus(`${BASE_URL}/bookings/search/getDoneBooking`);
+                    setStatus(`${BASE_URL}/carBookings/search/getDoneBooking`);
                     setPage(0);
                   }}
                 >
@@ -63,7 +63,9 @@ const ShowBookings = () => {
                 <button
                   className="btn btn-dark"
                   onClick={() => {
-                    setStatus(`${BASE_URL}/bookings/search/getPendingBooking`);
+                    setStatus(
+                      `${BASE_URL}/carBookings/search/getPendingBooking`
+                    );
                     setPage(0);
                   }}
                 >
@@ -73,7 +75,7 @@ const ShowBookings = () => {
                   className="btn btn-dark"
                   onClick={() => {
                     setStatus(
-                      `${BASE_URL}/bookings/search/getCancelledBooking`
+                      `${BASE_URL}/carBookings/search/getCancelledBooking`
                     );
                     setPage(0);
                   }}
@@ -85,9 +87,9 @@ const ShowBookings = () => {
               {error && <h1>{error}</h1>}
               {!loading && !error && (
                 <Row>
-                  {bookings?.map((booking) => (
-                    <Col lg="6" className="mb-4" key={booking._id}>
-                      <ShowBookingCard booking={booking} />
+                  {cars?.map((car) => (
+                    <Col lg="6" className="mb-4" key={car._id}>
+                      <ShowCarBookingCard car={car} />
                     </Col>
                   ))}
                   <Col lg="12 ">
@@ -118,4 +120,4 @@ const ShowBookings = () => {
   );
 };
 
-export default ShowBookings;
+export default ShowCarBookings;

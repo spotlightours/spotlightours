@@ -16,7 +16,10 @@ import Blogs from "./pages/Blogs/Blogs";
 import AddTours from "./pages/Admin/AddTours";
 import AddBlogs from "./pages/Admin/AddBlogs";
 import ShowBookings from "./pages/Admin/ShowBookings";
-
+import AllCars from "./pages/AllCars/AllCars";
+import CarDetails from "./pages/CarDetails/CarDetails";
+import ShowCarBookings from "./pages/Admin/ShowCarBookings";
+import AddCars from "./pages/Admin/AddCars";
 function App() {
   return (
     <>
@@ -31,11 +34,15 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addTours" element={<AddTours />}></Route>
+          <Route path="/addCars" element={<AddCars />}></Route>
           <Route path="/addBlogs" element={<AddBlogs />}></Route>
           <Route path="/tourBooked" element={<TourBooked />}></Route>
           <Route path="/tourAdded" element={<TourAdded />}></Route>
           <Route path="/blogAdded" element={<BlogAdded />}></Route>
           <Route path="/showBookings" element={<ShowBookings />}></Route>
+          <Route path="/showCarBookings" element={<ShowCarBookings />}></Route>
+          <Route path="/cars" element={<AllCars />}></Route>
+          <Route path="/cars/:id" element={<CarDetails />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

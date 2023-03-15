@@ -6,13 +6,11 @@ export const createCar = async (req, res) => {
   const newCar = new Car(req.body);
   try {
     const savedCar = await newCar.save();
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Car created successfully",
-        data: savedCar,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Car created successfully",
+      data: savedCar,
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: "internal server error" });
   }
@@ -21,7 +19,7 @@ export const createCar = async (req, res) => {
 //getSingle a Car
 export const getSingleCar = async (req, res) => {
   try {
-    const singleCar = await Car.findById(req.params.id);
+    const singleCar = await Car.findById(req.params.id).populate("reviews");
     res.status(200).json({
       success: true,
       message: "Car found successfully",
@@ -36,8 +34,14 @@ export const getSingleCar = async (req, res) => {
 
 //getAll a Car
 export const getAllCar = async (req, res) => {
+  // for pagination
+  const page = parseInt(req.query.page);
   try {
-    const allCar = await Car.find({}).sort({ _id: -1 });
+    const allCar = await Car.find({})
+      .sort({ _id: -1 })
+      .populate("reviews")
+      .skip(page * 9)
+      .limit(9);
     res.status(200).json({
       success: true,
       message: "All Cars found successfully",
