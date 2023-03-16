@@ -19,10 +19,9 @@ const CarDetails = () => {
   //this is an static data later we will call our API and load our data from database
   const { data, loading, error } = useFetch(`${BASE_URL}/cars/${id}`);
   // destructure properties from tour object
-  const { _id, title, photo, price, desc, seats, modelYear, gearbox, reviews } =
-    data;
+  const { title, photo, price, desc, seats, reviews } = data;
 
-  const { totalRating, avgRating } = calculateAvgRating(reviews);
+  const { avgRating } = calculateAvgRating(reviews);
 
   // date formate
   const options = { year: "numeric", month: "long", day: "numeric" };

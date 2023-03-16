@@ -21,7 +21,7 @@ const TourDetails = () => {
   // destructure properties from tour object
   const { title, photo, desc, price, maxGroupSize, reviews } = data;
 
-  const { totalRating, avgRating } = calculateAvgRating(reviews);
+  const { avgRating } = calculateAvgRating(reviews);
 
   // date formate
   const options = { year: "numeric", month: "long", day: "numeric" };
