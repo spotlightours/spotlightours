@@ -1,14 +1,18 @@
 import React from "react";
-import HeroVideo from "../../components/HeroVideo/HeroVideo";
 import Services from "../../components/Services/Services";
 import FeaturedTour from "../../components/FeaturedTour/FeaturedTour";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
+import CarouselSwiper from "../../components/CarouselSwiper/CarouselSwiper";
+import RecommendedCars from "../../components/CarCard/RecommendedCars";
+import RecommendedBlogs from "../../components/BlogCard/RecommendedBlogs";
 const Home = () => {
   return (
     <div>
-      <HeroVideo />
+      <CarouselSwiper />
       <Services />
       <FeaturedTour />
+      <RecommendedCars />
+      <RecommendedBlogs />
       <ImageGallery />
     </div>
   );

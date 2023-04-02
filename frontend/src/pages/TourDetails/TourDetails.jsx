@@ -35,28 +35,30 @@ const TourDetails = () => {
     try {
       if (!user || user === undefined || user === null) {
         alert("Please login first");
+      } else {
+        const reviewObj = {
+          reviewText,
+          rating: reviewRating,
+          username: user?.username,
+        };
+
+        const res = await fetch(`${BASE_URL}/reviews/${id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(reviewObj),
+        });
+
+        const result = await res.json();
+        if (!res.ok) {
+          alert(result.message);
+        }
+        if (res.ok) {
+          alert(result.message);
+        }
       }
-
-      const reviewObj = {
-        reviewText,
-        rating: reviewRating,
-        username: user?.username,
-      };
-
-      const res = await fetch(`${BASE_URL}/reviews/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(reviewObj),
-      });
-
-      const result = await res.json();
-      if (!res.ok) {
-        alert(result.message);
-      }
-      alert(result.message);
     } catch (error) {
       alert(error.message);
     }

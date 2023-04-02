@@ -34,7 +34,7 @@ const BlogDetails = () => {
                   </em>
                 </h6>
                 <img src={photo} alt="" />
-                <div className="blog__info">
+                <div className="blog__infoo">
                   <div dangerouslySetInnerHTML={{ __html: desc }}></div>
                 </div>
               </div>

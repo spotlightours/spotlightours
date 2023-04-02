@@ -44,21 +44,24 @@ const CarBooking = ({ car, avgRating }) => {
     try {
       if (!user || user === undefined || user === null) {
         return alert("Please login to book a tour");
-      }
-      const res = await fetch(`${BASE_URL}/carBookings`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(bookingInfo),
-      });
+      } else {
+        const res = await fetch(`${BASE_URL}/carBookings`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(bookingInfo),
+        });
 
-      const result = await res.json();
-      if (!res.ok) {
-        alert(result.message);
+        const result = await res.json();
+        if (!res.ok) {
+          alert(result.message);
+        }
+        if (res.ok) {
+          navigate("/tourBooked");
+        }
       }
-      navigate("/tourBooked");
     } catch (error) {
       alert(error.message);
     }

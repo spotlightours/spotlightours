@@ -9,6 +9,9 @@
 .menu {
   margin-bottom: 0;
 }
+.header .nav_wrapper .navigation ul {
+  list-style: none;
+}
 .nav__item a {
   text-decoration: none;
   color: var(--heading-color);

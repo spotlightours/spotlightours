@@ -54,7 +54,7 @@ const AddCars = () => {
             <Col lg="6" className="m-auto">
               <div className="admin__container d-flex justify-content-between">
                 <div className="admin__form">
-                  <h2>Add New Tour</h2>
+                  <h2>Add New Car</h2>
 
                   <Form onSubmit={handleClick}>
                     <FormGroup>
@@ -125,7 +125,7 @@ const AddCars = () => {
                       className="btn secondary_btn auth__btn"
                       type="submit"
                     >
-                      Add New Tour
+                      Add New Car
                     </Button>
                   </Form>
                 </div>
